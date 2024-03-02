@@ -1,4 +1,4 @@
-Many programs in this repo are modified from (or even exactly the same as) those appearing in [CS 211: Fundamentals of Computer Programming II](https://www.mccormick.northwestern.edu/computer-science/academics/courses/descriptions/211.html).
+Many programs in this repo are modified from (or even exactly the same as) those appearing in [CS 211: Fundamentals of Computer Programming II](https://www.mccormick.northwestern.edu/computer-science/academics/courses/descriptions/211.html). Some notes are from MIT OCW's [6.096 Introduction To C++](https://ocw.mit.edu/courses/6-096-introduction-to-c-january-iap-2011/).
 
 # Notes on C++
 
@@ -26,3 +26,4 @@ private:
   }
 };
 ```
+- `struct`s are a carry-over from the C language and are not generally used; classes are preferred. `struct`s are essentially the same as classes, except that their default access modifier is public.
