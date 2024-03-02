@@ -1,2 +1,1 @@
-# cpp-practice
-Programs to practice C++
+Many programs are modified or exactly the same versions of those appearing in [CS 211: Fundamentals of Computer Programming II](https://www.mccormick.northwestern.edu/computer-science/academics/courses/descriptions/211.html).
