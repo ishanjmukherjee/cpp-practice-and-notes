@@ -8,12 +8,20 @@ using namespace std;
 // constructor
 //
 
-Sailboat::Sailboat(string name, double len_overall, double len_wl)
-{
-  this->Name = name;
-  this->LengthOverall = len_overall;
-  this->LengthWaterline = len_wl;
-}
+// "typical" way
+// Sailboat::Sailboat(string name, double len_overall, double len_wl)
+// {
+//   this->Name = name;
+//   this->LengthOverall = len_overall;
+//   this->LengthWaterline = len_wl;
+// }
+
+// C++ way
+Sailboat::Sailboat(string name, double len_overall, double len_wl) 
+  : Name(name), 
+    LengthOverall(len_overall), 
+    LengthWaterline(len_wl)
+{ }
 
 //
 // accessors
