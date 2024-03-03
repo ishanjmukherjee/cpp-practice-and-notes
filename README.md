@@ -34,3 +34,9 @@ private:
   - If multiple base classes of class `C` inherit from the same base class `BaseC`, you'd end up with multiple instances of `BaseC` within each `C`. This is called a "dreaded diamond" class hierarchy and can get messy to resolve.
   - "In general, avoid multiple inheritance unless you know exactly what you’re doing."
 - `cin` only reads up the first whitespace. Thus, if the user enters `Mudd Library`, only `Mudd` gets read. To read multiple words, use the `getline` function instead. It reads everything until the user presses enter.
+- This [Learn C++ article](https://www.learncpp.com/cpp-tutorial/dynamic-memory-allocation-with-new-and-delete/) explains a use case for dynamic memory allocation I had never considered: “The amount of stack memory for a program is generally quite small -- Visual Studio defaults the stack size to 1MB. If you exceed this number, stack overflow will result, and the operating system will probably close down the program. … Being limited to just 1MB of memory would be problematic for many programs, especially those that deal with graphics.”
+Of course, other reasons apply too:
+  - “it leads to wasted memory if the variables aren’t actually used”,
+  - there is no easy way to “tell which bits of memory are actually used”, and
+  - static allocation “can lead to artificial limitations and/or array overflows. What happens when the user tries to read in 600 records from disk, but we’ve only allocated memory for a maximum of 500 records? Either we have to give the user an error, only read the 500 records, or (in the worst case where we don’t handle this case at all) overflow the record array and watch something bad happen.”
+
