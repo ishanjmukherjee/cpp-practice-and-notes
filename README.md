@@ -1,4 +1,4 @@
-Many programs in this repo are modified from (or even exactly the same as) those appearing in [CS 211: Fundamentals of Computer Programming II](https://www.mccormick.northwestern.edu/computer-science/academics/courses/descriptions/211.html). Some notes are from MIT OCW's [6.096 Introduction To C++](https://ocw.mit.edu/courses/6-096-introduction-to-c-january-iap-2011/).
+Many programs in this repo are modified from (or even exactly the same as) those appearing in [CS 211: Fundamentals of Computer Programming II](https://www.mccormick.northwestern.edu/computer-science/academics/courses/descriptions/211.html). Some notes are from MIT OCW's [6.096 Introduction To C++](https://ocw.mit.edu/courses/6-096-introduction-to-c-january-iap-2011/) and [Learn C++](https://www.learncpp.com/).
 
 # Notes on C++
 
@@ -39,5 +39,11 @@ Of course, other reasons apply too:
   - “it leads to wasted memory if the variables aren’t actually used”,
   - there is no easy way to “tell which bits of memory are actually used”, and
   - static allocation “can lead to artificial limitations and/or array overflows. What happens when the user tries to read in 600 records from disk, but we’ve only allocated memory for a maximum of 500 records? Either we have to give the user an error, only read the 500 records, or (in the worst case where we don’t handle this case at all) overflow the record array and watch something bad happen.”
-- According to the same [article](https://www.learncpp.com/cpp-tutorial/dynamic-memory-allocation-with-new-and-delete/) in the previous point, "**accessing heap-allocated objects is generally slower than accessing stack-allocated objects**. Because the compiler knows the address of stack-allocated objects, it can go directly to that address to get a value. Heap allocated objects are typically accessed via pointer. This requires two steps: one to get the address of the object (from the pointer), and another to get the value."
-
+- According to [this article](https://www.learncpp.com/cpp-tutorial/dynamic-memory-allocation-with-new-and-delete/), "**accessing heap-allocated objects is generally slower than accessing stack-allocated objects**. Because the compiler knows the address of stack-allocated objects, it can go directly to that address to get a value. Heap allocated objects are typically accessed via pointer. This requires two steps: one to get the address of the object (from the pointer), and another to get the value."
+- As [this article](https://www.learncpp.com/cpp-tutorial/dynamic-memory-allocation-with-new-and-delete/) explains, "when you delete a pointer, if that pointer is not going out of scope immediately afterward, set the pointer to `nullptr`". Otherwise, it become a **"dangling pointer"**: it is pointing at the same memory address in the heap as before, except that the address has been returned to the operating system. Trying to access the memory location can cause unpredictable behavior: "the value … that was previously assigned to the allocated memory will probably still be there, but it’s possible that the value at that memory address could have changed. It’s also possible the memory could be allocated to another application (or for the operating system’s own usage), and trying to access that memory will cause the operating system to shut the program down."
+- **Deleting a null pointer** has no effect. So, you can just write `delete ptr;` [instead of](https://www.learncpp.com/cpp-tutorial/dynamic-memory-allocation-with-new-and-delete/):
+```
+if (ptr) // if ptr is not a null pointer
+    delete ptr; // delete it
+// otherwise do nothing
+```
