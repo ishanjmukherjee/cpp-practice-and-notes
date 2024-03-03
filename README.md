@@ -28,3 +28,4 @@ private:
 };
 ```
 - `struct`s are a carry-over from the C language and are not generally used; classes are preferred. `struct`s are essentially the same as classes, except that their default access modifier is public.
+- From the [notes from this MIT lecture](https://ocw.mit.edu/courses/6-096-introduction-to-c-january-iap-2011/resources/mit6_096iap11_lec07/): the `private` access modifier prevents even derived classes from accessing data members and member functions. "To allow derived classes but not outside code to access data members and member functions, we must declare them as `protected`."
