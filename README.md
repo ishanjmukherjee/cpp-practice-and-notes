@@ -33,3 +33,4 @@ private:
   - However, if multiple base classes have a member `x`, we must disambiguate the member being referred to, eg `Vehicle::x` versus `InsuredItem::x`.
   - If multiple base classes of class `C` inherit from the same base class `BaseC`, you'd end up with multiple instances of `BaseC` within each `C`. This is called a "dreaded diamond" class hierarchy and can get messy to resolve.
   - "In general, avoid multiple inheritance unless you know exactly what you’re doing."
+- `cin` only reads up the first whitespace. Thus, if the user enters `Mudd Library`, only `Mudd` gets read. To read multiple words, use the `getline` function instead. It reads everything until the user presses enter.
