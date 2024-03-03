@@ -29,3 +29,12 @@ private:
 ```
 - `struct`s are a carry-over from the C language and are not generally used; classes are preferred. `struct`s are essentially the same as classes, except that their default access modifier is public.
 - From the [notes from this MIT lecture](https://ocw.mit.edu/courses/6-096-introduction-to-c-january-iap-2011/resources/mit6_096iap11_lec07/): the `private` access modifier prevents even derived classes from accessing data members and member functions. "To allow derived classes but not outside code to access data members and member functions, we must declare them as `protected`."
+- According [notes from this MIT lecture](https://ocw.mit.edu/courses/6-096-introduction-to-c-january-iap-2011/resources/mit6_096iap11_lec07/), C++ allows multiple inheritance unlike many other programming languages (ie, a class can have many base classes and inherit all members of all bases classes), a la:
+```
+class Car : public Vehicle, public InsuredIteam {
+  ...
+};
+```
+  - However, if multiple base classes have a member `x`, we must disambiguate the member being referred to, eg `Vehicle::x` versus `InsuredItem::x`.
+  - If multiple base classes of class `C` inherit from the same base class `BaseC`, you'd end up with multiple instances of `BaseC` within each `C`. This is called a "dreaded diamond" class hierarchy and can get tricky to resolve.
+  - "In general, avoid multiple inheritance unless you know exactly what you’re doing."
