@@ -74,3 +74,4 @@ int main() {
   // no need to delete a because it is statically allocated
 }
 ```
+- According to Prof Hummel in CS 211 Lecture 11 (Northwestern-only on Panopto), the destructor is called as soon as an object is out of scope, even if an `if` block `return`s out of scope before the closing braces. Also, though you can write the destructor, you cannot call it yourself anywhere you like; only the _system_ calls it, and only when the the resource goes out of scope. This is [**deterministic resource management**](https://learn.microsoft.com/en-us/cpp/cpp/object-lifetime-and-resource-management-modern-cpp?view=msvc-170) and makes memory leaks much less common in C++ than in C. In the latter, you have to remember to free the object before `return`ing out of scope. (Though memory leaks are still _possible_ in C++ if you write the destructor incorrectly.) 
