@@ -47,3 +47,30 @@ if (ptr) // if ptr is not a null pointer
     delete ptr; // delete it
 // otherwise do nothing
 ```
+- According to [this GeeksforGeeks article](https://www.geeksforgeeks.org/delete-in-c/), you `delete` a non-array pointer but must `delete[]` an array. The square brackets indicate that each cell of the array must be destroyed individually.
+```
+#include <iostream>
+
+using namespace std;
+
+int main() {
+  int* ptr1 = new int;
+  int* ptr2 = new int(10);
+  int a = 0; // trying to cout without initializing will throw error
+  int arr_len = 10;
+  int* arr = new int[arr_len];
+
+  cout << "ptr1 = " << *ptr1 << endl; // random value because uninitialized
+  cout << "ptr2 = " << *ptr2 << endl; // 10
+  cout << "a = " << a << endl;        // 0
+
+  for (int i = 0; i < arr_len; i++) {
+    cout << "arr[" << i << "] = " << arr[i] << endl; // random values
+  }
+
+  delete ptr1;
+  delete ptr2;
+  delete[] arr;
+  // no need to delete a because it is statically allocated
+}
+```
