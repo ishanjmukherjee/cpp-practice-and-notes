@@ -104,3 +104,4 @@ int main()
     return 0;
 }
 ```
+- From this [Learn C++ article](https://www.learncpp.com/cpp-tutorial/keywords-and-naming-identifiers/): "If the variable or function name is multi-word, there are two common conventions: words separated by underscores (sometimes called **snake_case**), or intercapped (sometimes called **camelCase**, since the capital letters stick up like the humps on a camel)." Either is fine, but the authors "typically use the intercapped approach because it’s easier to read (it’s easy to mistake an underscore for a space in dense blocks of code)".
