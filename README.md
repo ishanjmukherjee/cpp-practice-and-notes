@@ -97,10 +97,9 @@ void doNothing(int&) // using & to trick the compiler into thinking variable x i
 
 int main()
 {
-    int x; // this variable is uninitialized
-    doNothing(x); // make the compiler think we're assigning a value to this variable
-    // print the garbage uninitialized value
-    std::cout << x << '\n';
+    int x;                  // this variable is uninitialized
+    doNothing(x);           // make the compiler think we're assigning a value to this variable
+    std::cout << x << '\n'; // print the garbage uninitialized value
     return 0;
 }
 ```
