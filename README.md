@@ -77,3 +77,30 @@ int main() {
 - According to Prof Hummel in CS 211 Lecture 11 (Northwestern-only on Panopto), the destructor is called as soon as an object is out of scope, even if an `if` block `return`s out of scope before the closing braces. Also, though you can write the destructor, you cannot call it yourself anywhere you like; only the _system_ calls it, and only when the the resource goes out of scope. This is [**deterministic resource management**](https://learn.microsoft.com/en-us/cpp/cpp/object-lifetime-and-resource-management-modern-cpp?view=msvc-170) and makes memory leaks much less common in C++ than in C. In the latter, you have to remember to free the object before `return`ing out of scope. (Though memory leaks are still _possible_ in C++ if you write the destructor incorrectly.)
 - This [Learn C++ discussion](https://www.learncpp.com/cpp-tutorial/introduction-to-iostream-cout-cin-and-endl/) of **`std::endl` versus `\n`** concludes that because `std::endl` outputs a newline *and* flushes the buffer, it is generally slower than `\n`. So, "\[i\]f we output multiple lines of text ending with `std::endl`, we will get multiple flushes, which is slow and probably unnecessary. When outputting text to the console, we typically don’t need to explicitly flush the buffer ourselves. C++’s output system is designed to self-flush periodically, and it’s both simpler and more efficient to let it flush itself."
 - From this [Learn C++ article](https://www.learncpp.com/cpp-tutorial/introduction-to-iostream-cout-cin-and-endl/): "When `\n` is not being embedded into an existing line of double-quoted text (e.g. `"hello\n"`), it is **conventionally single quoted (`'\n'`)**." This makes sense because `\n` is a newline *character*. But the authors still recommend using double quoted `"n"` becaue "\[i\]t’s simpler to double-quote all outputted text" and "it helps avoid inadvertent multicharacter literals".
+- Replit doesn't let me compile the first program below because `x` is uninitialized, but the second program compiles and prints a garbage uninitialized value because the compiler is tricked into thinking that `x` is used in the function. The compiler will not always save you, so it's **best practice to initialize your variables**.
+```
+#include <iostream>
+
+int main()
+{
+    int x;
+    std::cout << x << '\n';
+    return 0;
+}
+```
+```
+#include <iostream>
+
+void doNothing(int&) // using & to trick the compiler into thinking variable x is used
+{
+}
+
+int main()
+{
+    int x; // this variable is uninitialized
+    doNothing(x); // make the compiler think we're assigning a value to this variable
+    // print the garbage uninitialized value
+    std::cout << x << '\n';
+    return 0;
+}
+```
