@@ -120,4 +120,30 @@ int add(int x, int y); // function declaration includes return type, name, param
 ```
 int add(int, int); // valid function declaration
 ```
-- From this [Learn C++ article](https://www.learncpp.com/cpp-tutorial/forward-declarations/): a declaration "tells the compiler about the existence of an identifier and its associated type information" while a definition "is a declaration that actually implements (for functions and types) or instantiates (for variables) the identifier". **All definitions are declarations, but not all declarations are definitions** (for example, the forward declaration above is not a definition). Declarations that aren’t definitions are called **pure declarations** (e.g., the forward declaration for a function above). 
+- From this [Learn C++ article](https://www.learncpp.com/cpp-tutorial/forward-declarations/): a declaration "tells the compiler about the existence of an identifier and its associated type information" while a definition "is a declaration that actually implements (for functions and types) or instantiates (for variables) the identifier". **All definitions are declarations, but not all declarations are definitions** (for example, the forward declaration above is not a definition). Declarations that aren’t definitions are called **pure declarations** (e.g., the forward declaration for a function above).
+- `::` is the **scope resolution operator**. From this [Learn C++ article](https://www.learncpp.com/cpp-tutorial/naming-collisions-and-an-introduction-to-namespaces/): "The identifier to the left of the `::` symbol identifies the namespace that the name to the right of the `::` symbol is contained within. If no identifier to the left of the :: symbol is provided, the global namespace is assumed." But it's best practice to use explicit namespace prefixes.
+- It's bad practice to use **`using namespace std`**, since it defeats the whole point of defining namespaces. From this [Learn C++ article](https://www.learncpp.com/cpp-tutorial/naming-collisions-and-an-introduction-to-namespaces/), "any identifier we define may conflict with any identically named identifier in the std namespace. Even worse, while an identifier name may not conflict today, it may conflict with new identifiers added to the std namespace in future language revisions."
+- Learn C++ authors [say](https://www.learncpp.com/cpp-tutorial/introduction-to-the-preprocessor/) that function-like **macros** are unsafe and basically never recommended, but even object-like macros for text substitution should now only be seen in legacy code because constant variables are better. They discuss constant variables in [this article](https://www.learncpp.com/cpp-tutorial/introduction-to-the-preprocessor/).
+- Macros are still useful, though -- not for text substitution, but for **[conditional compilation](https://www.learncpp.com/cpp-tutorial/introduction-to-the-preprocessor/)** using e.g. `#ifdef`, `#ifndef` and `#endif`.
+- You can use **`#if 0`** to exclude a block of code from being compiled. This comes handy in "commenting out" code with multi-line comments (which cannot be nested inside another multi-line comment). (To temporarily re-enable code that has been wrapped in an `#if 0`, you can change the `#if 0` to `#if 1`.) Illustrative program from this [Learn C++ article](https://www.learncpp.com/cpp-tutorial/introduction-to-the-preprocessor/):
+```
+#include <iostream>
+
+# only "Joe" will be printed
+int main()
+{
+    std::cout << "Joe\n";
+
+#if 0 // Don't compile anything starting here
+    std::cout << "Bob\n";
+    /* Some
+     * multi-line
+     * comment here
+     */
+    std::cout << "Steve\n";
+#endif // until this point
+
+    return 0;
+}
+```
+- According to this [Learn C++ article](https://www.learncpp.com/cpp-tutorial/header-files/), the **raison d'etre for header files** is "to put declarations in one location and then import them wherever we need them. This can save a lot of typing in multi-file programs."
